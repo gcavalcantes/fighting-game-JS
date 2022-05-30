@@ -125,6 +125,38 @@ function rectangularCollision({rectangle1, rectangle2}){
     )
 }
 
+// Determines who wins the round
+function determineWinner({player, enemy, timerId}) {
+    clearTimeout(timerId)
+    document.querySelector('#displayText').style.display = 'flex'
+    if (player.health === enemy.health){
+        document.querySelector('#displayText').innerHTML = 'TIE!'
+        console.log('Tie!')
+    } else if (player.health > enemy.health) { 
+        document.querySelector('#displayText').innerHTML = 'PLAYER 1 WINS!'
+        console.log('Player 1 wins!')
+    } else if (player.health < enemy.health) { 
+        document.querySelector('#displayText').innerHTML = 'PLAYER 2 WINS!'
+        console.log('Player 2 wins!')
+    }
+}
+
+let timer = 60
+let timerId
+function decreaseTimer(){
+    
+    if (timer > 0) {
+        timerId = setTimeout(decreaseTimer, 1000)
+        timer--
+        document.querySelector('#timer').innerHTML = timer
+    }
+    if (timer === 0){
+        determineWinner({player, enemy, timerId})
+    }
+}
+
+decreaseTimer()
+
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -169,6 +201,11 @@ function animate() {
         player.health -= 20
         document.querySelector('#player1Health').style.width = player.health + '%';
 
+    }
+
+    // Ends the round based on health
+    if (enemy.health <= 0 || player.health <= 0){
+        determineWinner({player, enemy, timerId})
     }
 }
 

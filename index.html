@@ -30,11 +30,17 @@
                 </div>
             </div>
             <!-- timer -->
-            <div style="
-            background-color: red; 
-            width: 100px; 
-            height: 100px; 
-            flex-shrink: 0;">
+            <div 
+            id="timer"
+            style="
+                background-color: red; 
+                width: 100px; 
+                height: 100px; 
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;">
+            10
             </div>
             <!-- player 2 health -->
             <div style="position: relative; height: 30px; width: 100%;">
@@ -50,6 +56,19 @@
                 left: 0;">
                 </div>
             </div>
+        </div>
+        <div 
+            id="displayText"
+            style="position: absolute; 
+            color: white;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: none;">
+            Tie
         </div>
         <canvas></canvas>
     </div>
